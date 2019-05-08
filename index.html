@@ -6,28 +6,45 @@
 
  <script>
    function playRound() {
-     if (playerSelection === "rock" && computerSelection === "paper") {
+     if (playerPlay() === "rock" && computerSelection === "paper") {
        return("You Lose!");
-     } else if (playerSelection === "rock" && computerSelection === "scissors"){
+     } else if (playerPlay() === "rock" && computerSelection === "scissors"){
        return("You Win!");
-     } else if (playerSelection === "scissors" && computerSelection === "rock") {
+     } else if (playerPlay() === "scissors" && computerSelection === "rock") {
        return("You Lose!");
-     } else if (playerSelection === "scissors" && computerSelection === "paper"){
+     } else if (playerPlay() === "scissors" && computerSelection === "paper"){
        return("You Win!");
-     } else if (playerSelection === "paper" && computerSelection === "scissors") {
+     } else if (playerPlay() === "paper" && computerSelection === "scissors") {
        return("You Lose!");
-     } else if (playerSelection === "paper" && computerSelection === "rock"){
+     } else if (playerPlay() === "paper" && computerSelection === "rock"){
        return("You Win!");
-     } else { return("Tie");}
+     } else if (playerPlay() === computerSelection){
+       return("Tie");
+     } else { return("You must type either rock, paper, or scissors. Come on.");}
    }
 
    let compChoice = ["rock", "paper", "scissors"];
    function computerPlay() {
      return compChoice[Math.floor(Math.random() * compChoice.length)];
-   };
-   let playerSelection = "scissors";
+   }
+   function playerPlay() {
+     let playerInput = playerSelection.toLowerCase();
+     return(playerInput);
+   }
+   let playerSelection = prompt("Choose Your Weapon");
    const computerSelection = computerPlay();
-   console.log(playRound());
+   let x = 0;
+   let y = 0;
+   let playerScore = ++x;
+   let compScore = ++y;
+   function game() {
+     if (playRound() === "You Win!") {
+       return(playerScore + " " + y);
+     } else if (playRound() === "You Lose!") {
+       return(x + " " + compScore);
+     } else {return(x + " " + y);}
+   }
+   console.log(game());
  </script>
 
  <body>
