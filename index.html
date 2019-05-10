@@ -5,6 +5,7 @@
  </head>
 
  <script>
+ function game() {
    function playRound() {
      if (playerPlay() === "rock" && computerSelection === "paper") {
        return("You Lose!");
@@ -33,18 +34,23 @@
    }
    let playerSelection = prompt("Choose Your Weapon");
    const computerSelection = computerPlay();
-   let x = 0;
-   let y = 0;
-   let playerScore = ++x;
-   let compScore = ++y;
-   function game() {
-     if (playRound() === "You Win!") {
-       return(playerScore + " " + y);
-     } else if (playRound() === "You Lose!") {
-       return(x + " " + compScore);
-     } else {return(x + " " + y);}
+   let playerScore = 0;
+   let compScore = 0;
+   function playAgain() {
+       playerScore = playerScore + 1;
+       compScore = compScore + 1;
+       if (playRound() === "You Win!") {
+         return(playerScore);
+       } else if (playRound() === "You Lose!") {
+         return(compScore);
+       } else {return("Tie");}
+     }
+   do {
+    playAgain();
    }
-   console.log(game());
+   while (playerScore < 5 || compScore < 5);
+ }
+ console.log(playRound());
  </script>
 
  <body>
